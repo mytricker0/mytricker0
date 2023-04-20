@@ -40,7 +40,8 @@
 
 ###
 
-<img align="right" height="150" src="https://imgur.com/a/WywXtxv"  />
+![alt text](https://github.com/mytricker0/mytricker0/blob/output/profile.png)
+
 
 ###
 
