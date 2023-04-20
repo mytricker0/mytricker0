@@ -9,8 +9,7 @@
 
   <img src="https://stats-eight-vert.vercel.app/api?username=mytricker0&show_icons=true&hide_border=true&theme=transparent&count_private=true" alt="stats graph" />
   
-  <img src="https://stats-eight-vert.vercel.app/api/top-langs?username=mytricker0&locale=en&hide_title=false&layout=compact&langs_count=5&hide_border=true&theme=transparent&count_private=true" height="150" alt="languages graph"  />
-</div>
+
 
 ###
 
@@ -41,7 +40,7 @@
 
 ###
 
-![alt text](https://github.com/mytricker0/mytricker0/blob/output/profile.png)
+![alt text](https://github.com/mytricker0/mytricker0/blob/output/00157-3439188607.png)
 
 
 ###
