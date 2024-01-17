@@ -40,7 +40,8 @@
 
 ###
 
-![alt text](https://github.com/mytricker0/mytricker0/blob/output/00157-3439188607.png)
+[![GitHub Trends SVG](https://api.githubtrends.io/user/svg/mytricker0/langs)](https://githubtrends.io)
+
 
 
 ###
