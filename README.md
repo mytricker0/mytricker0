@@ -1,4 +1,4 @@
-<h2 align="left">Hi 👋! My name is MyTricker0 and I'm a CS Student from Belgium.</h2>
+<h2 align="left">Hi 👋! My name is MyTricker0 and I'm a CyberSecurity Student from Belgium.</h2>
 
 ###
 
