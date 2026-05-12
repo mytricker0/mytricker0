@@ -127,8 +127,8 @@ me.say_hi()
 <div align="center">
 
 <!-- GitHub Stats via github-stats — pure GitHub Actions, no Vercel -->
-<img src="https://raw.githubusercontent.com/mytricker0/mytricker0/main/generated/overview.svg#gh-dark-mode-only" alt="Stats Overview" />
-<img src="https://raw.githubusercontent.com/mytricker0/mytricker0/main/generated/languages.svg#gh-dark-mode-only" alt="Top Languages" />
+<img src="https://raw.githubusercontent.com/mytricker0/mytricker0/generated/overview.svg#gh-dark-mode-only" alt="Stats Overview" />
+<img src="https://raw.githubusercontent.com/mytricker0/mytricker0/generated/languages.svg#gh-dark-mode-only" alt="Top Languages" />
 
 </div>
 

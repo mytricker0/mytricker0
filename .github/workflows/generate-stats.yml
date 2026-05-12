@@ -34,10 +34,10 @@ jobs:
 
       - name: Generate stats SVGs
         run: |
-          mkdir -p generated
+          mkdir -p /tmp/stats
           github-stats-src/zig-out/bin/github-stats \
-            --overview-output-file generated/overview.svg \
-            --languages-output-file generated/languages.svg
+            --overview-output-file /tmp/stats/overview.svg \
+            --languages-output-file /tmp/stats/languages.svg
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           EXCLUDE_REPOS: ${{ secrets.EXCLUDE_REPOS }}
@@ -46,10 +46,14 @@ jobs:
           SILENT: "true"
           MAX_RETRIES: "5"
 
-      - name: Commit and push
+      - name: Commit and push to generated branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add generated/
+          git fetch origin generated 2>/dev/null || true
+          git checkout generated 2>/dev/null || git checkout --orphan generated
+          cp /tmp/stats/overview.svg overview.svg
+          cp /tmp/stats/languages.svg languages.svg
+          git add overview.svg languages.svg
           git diff --staged --quiet || git commit -m "chore: update GitHub stats SVGs"
-          git push
+          git push --set-upstream origin generated
