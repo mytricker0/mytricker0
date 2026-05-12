@@ -1,0 +1,59 @@
+name: Generate GitHub Stats
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout profile repo
+        uses: actions/checkout@v4
+
+      - name: Checkout github-stats source
+        uses: actions/checkout@v4
+        with:
+          repository: jstrieb/github-stats
+          path: github-stats-src
+
+      - name: Set up Zig
+        uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29
+        with:
+          version: 0.16.0
+
+      - name: Build github-stats binary
+        working-directory: github-stats-src
+        run: zig build
+
+      - name: Generate stats SVGs
+        run: |
+          mkdir -p /tmp/stats
+          github-stats-src/zig-out/bin/github-stats \
+            --overview-output-file /tmp/stats/overview.svg \
+            --languages-output-file /tmp/stats/languages.svg
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          EXCLUDE_REPOS: ${{ secrets.EXCLUDE_REPOS }}
+          EXCLUDE_LANGS: ${{ secrets.EXCLUDE_LANGS }}
+          EXCLUDE_PRIVATE: "false"
+          SILENT: "true"
+          MAX_RETRIES: "5"
+
+      - name: Commit and push to generated branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin generated 2>/dev/null || true
+          git checkout generated 2>/dev/null || git checkout --orphan generated
+          cp /tmp/stats/overview.svg overview.svg
+          cp /tmp/stats/languages.svg languages.svg
+          git add overview.svg languages.svg
+          git diff --staged --quiet || git commit -m "chore: update GitHub stats SVGs"
+          git push --set-upstream origin generated
